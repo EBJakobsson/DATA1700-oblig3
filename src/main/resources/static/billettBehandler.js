@@ -17,7 +17,7 @@ function checkValid() {
         valid = false;
         document.getElementById("feilmeldingFilm").innerHTML = "Legg inn en film.";
     }
-    if (antall === 0) {
+    if (antall <= 0) {
         valid = false;
         document.getElementById("feilmeldingAntall").innerHTML = "Skriv et antall over 0.";
     }
@@ -25,17 +25,33 @@ function checkValid() {
         valid = false;
         document.getElementById("feilmeldingFor").innerHTML = "Skriv fornavn inn.";
     }
+    else if (!/^[a-zA-Z]+$/.test(document.getElementById("fornavn").value)) {
+        valid = false;
+        document.getElementById("feilmeldingFor").innerHTML = "Skriv et gyldig fornavn."
+    }
     if (document.getElementById("etternavn").value === "") {
         valid = false;
         document.getElementById("feilmeldingEtter").innerHTML = "Skriv etternavn inn.";
+    }
+    else if (!/^[a-zA-Z]+$/.test(document.getElementById("etternavn").value)) {
+        valid = false;
+        document.getElementById("feilmeldingEtter").innerHTML = "Skriv et gyldig etternavn."
     }
     if (document.getElementById("tlfnr").value === "") {
         valid = false;
         document.getElementById("feilmeldingTlf").innerHTML = "Skriv telefonnummeret inn.";
     }
+    else if (!/^[0-9]{7,12}$/.test(document.getElementById("tlfnr").value)) {
+        valid = false;
+        document.getElementById("feilmeldingTlf").innerHTML = "Skriv et gyldig telefonnummer."
+    }
     if (document.getElementById("epost").value === "") {
         valid = false;
         document.getElementById("feilmeldingEpost").innerHTML = "Skriv e-posten din inn.";
+    }
+    else if (!/^[\w\.-]+@[a-zA-Z\d\.-]+\.[a-zA-Z]{2,}$/.test(document.getElementById("epost").value)) {
+        valid = false;
+        document.getElementById("feilmeldingEpost").innerHTML = "Skriv en gyldig e-postadresse."
     }
     if (valid === true) {
         registrerBillett();
